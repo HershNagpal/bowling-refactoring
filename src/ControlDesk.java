@@ -36,32 +36,29 @@
  */
 
 /**
- * Class that represents control desk
- *
+ * Class that represents the control desk of the game.
+ * The control desk runs the game, manages parties, and stores bowlers.
  */
-
 import java.util.*;
 import java.io.*;
 
 class ControlDesk extends Thread {
 
-	/** The collection of Lanes */
+	/**
+	 * lanes: The collection of Lanes
+	 * partyQueue: The party wait queue
+	 * numLanes: The number of lanes represented
+	 * subscribers: the collection of subscribers
+	 */
+
 	private HashSet lanes;
-
-	/** The party wait queue */
 	private Queue partyQueue;
-
-	/** The number of lanes represented */
 	private int numLanes;
-	
-	/** The collection of subscribers */
 	private Vector subscribers;
 
     /**
      * Constructor for the ControlDesk class
-     *
-     * @param numlanes	the numbler of lanes to be represented
-     *
+     * @param numlanes	the numbler of lanes to be represented in the alley
      */
 
 	public ControlDesk(int numLanes) {
@@ -80,8 +77,7 @@ class ControlDesk extends Thread {
 	}
 	
 	/**
-	 * Main loop for ControlDesk's thread
-	 * 
+	 * Main loop for ControlDesk's thread.
 	 */
 	public void run() {
 		while (true) {
@@ -96,14 +92,10 @@ class ControlDesk extends Thread {
 		
 
     /**
-     * Retrieves a matching Bowler from the bowler database.
-     *
-     * @param nickName	The NickName of the Bowler
-     *
-     * @return a Bowler object.
-     *
+     * Retrieves a bowler from the database with the given nickname.
+     * @param nickName	The NickName of the Bowler to retrieve
+     * @return a Bowler object with the given nickname from the database.
      */
-
 	private Bowler registerPatron(String nickName) {
 		Bowler patron = null;
 
@@ -122,10 +114,9 @@ class ControlDesk extends Thread {
 	}
 
     /**
-     * Iterate through the available lanes and assign the paties in the wait queue if lanes are available.
-     *
+     * Iterate through the available lanes and assigns 
+	 * the parties in the wait queue if lanes are available
      */
-
 	public void assignLane() {
 		Iterator it = lanes.iterator();
 
@@ -141,19 +132,9 @@ class ControlDesk extends Thread {
 	}
 
     /**
+     * Creates a party from a Vector of nickNnmes and adds them to the wait queue.
+     * @param partyNicks A Vector of NickNames
      */
-
-	public void viewScores(Lane ln) {
-		// TODO: attach a LaneScoreView object to that lane
-	}
-
-    /**
-     * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
-     *
-     * @param partyNicks	A Vector of NickNames
-     *
-     */
-
 	public void addPartyQueue(Vector partyNicks) {
 		Vector partyBowlers = new Vector();
 		for (int i = 0; i < partyNicks.size(); i++) {
@@ -167,11 +148,8 @@ class ControlDesk extends Thread {
 
     /**
      * Returns a Vector of party names to be displayed in the GUI representation of the wait queue.
-	 *
      * @return a Vecotr of Strings
-     *
      */
-
 	public Vector getPartyQueue() {
 		Vector displayPartyQueue = new Vector();
 		for ( int i=0; i < ( (Vector)partyQueue.asVector()).size(); i++ ) {
@@ -186,11 +164,8 @@ class ControlDesk extends Thread {
 
     /**
      * Accessor for the number of lanes represented by the ControlDesk
-     * 
      * @return an int containing the number of lanes represented
-     *
      */
-
 	public int getNumLanes() {
 		return numLanes;
 	}
