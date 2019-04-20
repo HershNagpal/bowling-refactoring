@@ -36,7 +36,7 @@ import java.text.*;
 
 /**
  * Constructor for GUI used to Add Parties to the waiting party queue.
- *  
+ * 
  */
 
 public class AddPartyView implements ActionListener, ListSelectionListener {
@@ -53,6 +53,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	private String selectedNick, selectedMember;
 
+	/**
+	 * Creates the view used to add party members to a game.
+	 * @param controlDesk The ControlDeskView that this PartyView will be added to
+	 * @param max The maximum number of people in a party
+	 */
 	public AddPartyView(ControlDeskView controlDesk, int max) {
 
 		this.controlDesk = controlDesk;
@@ -75,7 +80,6 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		empty.add("(Empty)");
 
 		JScrollPane partyPane = new JScrollPane(partyList);
-		//        partyPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		partyList = createPartyList(empty);
 		partyPanel.add(partyPane);
 
@@ -128,6 +132,12 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	}
 
+	/**
+	 * Helper method to create the list of members in the party
+	 * @param empty A list of members that is empty and contains an 
+	 * 				"empty" object used to display the list's emptyness
+	 * @return the created JList of party members
+	 */
 	private JList createPartyList(Vector empty) {
 		JList partyList = new JList(empty);
 		partyList.setFixedCellWidth(120);
@@ -136,6 +146,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		return partyList;
 	}
 
+	/**
+	 * Helper method to create the panel in the 
+	 * GUI that allows the player to finish their party creation.
+	 * @return the panel with the "finished" button
+	 */
 	private JPanel createFinishedPanel() {
 		finished = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
@@ -145,6 +160,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		return finishedPanel;
 	}
 
+	/**
+	 * Helper method to create the panel in the GUI that 
+	 * allows players to be able to add a new member to their party.
+	 * @return the panel with the "new patron" button
+	 */
 	private JPanel createNewPatronPanel() {
 		newPatron = new JButton("New Patron");
 		JPanel newPatronPanel = new JPanel();
@@ -154,6 +174,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		return newPatronPanel;
 	}
 
+	/**
+	 * Helper method to create the panel in the GUI that 
+	 * allows players to be able to add a new party to the game.
+	 * @return the panel with the "add to party" button
+	 */
 	private JPanel createAddPartyButton() {
 		addPatron = new JButton("Add to Party");
 		JPanel addPatronPanel = new JPanel();
@@ -163,6 +188,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		return addPatronPanel;
 	}
 
+	/**
+	 * Helper method to create the panel in the GUI that 
+	 * allows players to be able to remove members from their parties.
+	 * @return the panel with the "remove member" button
+	 */
 	private JPanel createRemPatronPanel() {
 		remPatron = new JButton("Remove Member");
 		JPanel remPatronPanel = new JPanel();
@@ -173,7 +203,10 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	}
 
 
-
+	/**
+	 * Method that checks when an action is performed on the buttons on the screen.
+	 * The method will perform different checks based on what was pressed.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(addPatron)) {
 			if (selectedNick != null && party.size() < maxSize) {
@@ -203,11 +236,10 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	}
 
-/**
- * Handler for List actions
- * @param e the ListActionEvent that triggered the handler
- */
-
+	/**
+	 * Hanfles when the party list is changed by the player adding or removing players
+	 * @param e the ListActionEvent that triggered the handler
+	 */
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getSource().equals(allBowlers)) {
 			selectedNick =
@@ -219,20 +251,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		}
 	}
 
-/**
- * Accessor for Party
- */
-
-	public Vector getNames() {
-		return party;
-	}
-
-/**
- * Called by NewPatronView to notify AddPartyView to update
- * 
- * @param newPatron the NewPatronView that called this method
- */
-
+	/**
+	 * Called by NewPatronView to notify AddPartyView to update
+	 * 
+	 * @param newPatron the NewPatronView that called this method
+	 */
 	public void updateNewPatron(NewPatronView newPatron) {
 		try {
 			Bowler checkBowler = BowlerFile.getBowlerInfo( newPatron.getNick() );
@@ -253,10 +276,9 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		}
 	}
 
-/**
- * Accessor for Party
- */
-
+	/**
+	 * Accessor for Party
+	 */
 	public Vector getParty() {
 		return party;
 	}
