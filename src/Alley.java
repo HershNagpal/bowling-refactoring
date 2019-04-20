@@ -21,17 +21,24 @@
  */
 
 /**
- *  Class that is the outer container for the bowling sim
+ *  Class that is the outer container for the bowling alley.
  *
  */
-
 public class Alley {
 	public ControlDesk controldesk;
 
+	/**
+	 * Constructor for the bowling alley
+	 * @param numLanes the number of lanes in the alley
+	 */
     public Alley( int numLanes ) {
         controldesk = new ControlDesk( numLanes );
     }
 
+	/**
+	 * Returns the control desk managing the game
+	 * @return the control desk for the game
+	 */
 	public ControlDesk getControlDesk() {
 		return controldesk;
 	}

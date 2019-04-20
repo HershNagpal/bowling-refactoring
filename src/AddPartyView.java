@@ -36,9 +36,7 @@ import java.text.*;
 
 /**
  * Constructor for GUI used to Add Parties to the waiting party queue.
- * 
  */
-
 public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	private int maxSize;
