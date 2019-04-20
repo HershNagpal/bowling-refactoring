@@ -22,6 +22,10 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * The class that manages dealing with the bowler 
+ * objects in external bowler files.
+ */
 class BowlerFile {
 
 	/** The location of the bowelr database */
@@ -29,13 +33,9 @@ class BowlerFile {
 
     /**
      * Retrieves bowler information from the database and returns a Bowler objects with populated fields.
-     *
      * @param nickName	the nickName of the bolwer to retrieve
-     *
-     * @return a Bowler object
-     * 
+     * @return a Bowler object with the given nickname from the bowler database file.
      */
-
 	public static Bowler getBowlerInfo(String nickName)
 		throws IOException, FileNotFoundException {
 
@@ -60,14 +60,13 @@ class BowlerFile {
 	}
 
     /**
-     * Stores a Bowler in the database
+     * Stores a Bowler in the database file.
      *
      * @param nickName	the NickName of the Bowler
      * @param fullName	the FullName of the Bowler
      * @param email	the E-mail Address of the Bowler
      *
      */
-
 	public static void putBowlerInfo(
 		String nickName,
 		String fullName,
@@ -83,12 +82,9 @@ class BowlerFile {
 	}
 
     /**
-     * Retrieves a list of nicknames in the bowler database
-     *
-     * @return a Vector of Strings
-     * 
+     * Retrieves a list of nicknames in the bowler database.
+     * @return a Vector of Strings of nicknames in the bowler database
      */
-
 	public static Vector getBowlers()
 		throws IOException, FileNotFoundException {
 
