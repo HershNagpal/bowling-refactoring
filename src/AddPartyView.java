@@ -39,13 +39,25 @@ import java.text.*;
  */
 public class AddPartyView implements ActionListener, ListSelectionListener {
 
+	/**
+	 * maxSize: The maximum size of a party
+	 * win: the window displayed on screen
+	 * addPatron: The button displayed on screen to add created patrons to a party
+	 * newPatron: The button displayed on screen to create a new patron
+	 * remPatron: The button to remove patrons from a party
+	 * finished: The button to finish managing the party
+	 * party: a list of players in the party
+	 * bowlerdb: the database with bowlerfile classes
+	 * partyList: the list of bowlers in the party
+	 * allBowlers: the list of all bowlers 
+	 */
+
 	private int maxSize;
 
 	private JFrame win;
 	private JButton addPatron, newPatron, remPatron, finished;
 	private JList partyList, allBowlers;
 	private Vector party, bowlerdb;
-	private Integer lock;
 
 	private ControlDeskView controlDesk;
 
