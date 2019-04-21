@@ -9,10 +9,16 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * Class that saves the score history of the players in the game to a file for later retrieval.
+ */
 public class ScoreHistoryFile {
 
 	private static String SCOREHISTORY_DAT = "SCOREHISTORY.DAT";
 
+	/**
+	 * Adds the given score for the given player to the score history file.
+	 */
 	public static void addScore(String nick, String date, String score)
 		throws IOException, FileNotFoundException {
 
@@ -24,6 +30,9 @@ public class ScoreHistoryFile {
 		out.close();
 	}
 
+	/**
+	 * Retrieves the scores of a previous game using the given nickname from the history file.
+	 */
 	public static Vector getScores(String nick)
 		throws IOException, FileNotFoundException {
 		Vector scores = new Vector();
