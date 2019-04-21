@@ -41,7 +41,6 @@
  */
 import java.util.*;
 import java.io.*;
-
 class ControlDesk extends Thread {
 
 	/**
@@ -50,7 +49,6 @@ class ControlDesk extends Thread {
 	 * numLanes: The number of lanes represented
 	 * subscribers: the collection of subscribers
 	 */
-
 	private HashSet lanes;
 	private Queue partyQueue;
 	private int numLanes;
@@ -60,7 +58,6 @@ class ControlDesk extends Thread {
      * Constructor for the ControlDesk class
      * @param numlanes	the numbler of lanes to be represented in the alley
      */
-
 	public ControlDesk(int numLanes) {
 		this.numLanes = numLanes;
 		lanes = new HashSet(numLanes);
@@ -172,22 +169,16 @@ class ControlDesk extends Thread {
 
     /**
      * Allows objects to subscribe as observers
-     * 
-     * @param adding	the ControlDeskObserver that will be subscribed
-     *
+     * @param adding the ControlDeskObserver that will be subscribed
      */
-
 	public void subscribe(ControlDeskObserver adding) {
 		subscribers.add(adding);
 	}
 
     /**
      * Broadcast an event to subscribing objects.
-     * 
      * @param event	the ControlDeskEvent to broadcast
-     *
      */
-
 	public void publish(ControlDeskEvent event) {
 		Iterator eventIterator = subscribers.iterator();
 		while (eventIterator.hasNext()) {
@@ -201,11 +192,8 @@ class ControlDesk extends Thread {
 
     /**
      * Accessor method for lanes
-     * 
      * @return a HashSet of Lanes
-     *
      */
-
 	public HashSet getLanes() {
 		return lanes;
 	}
