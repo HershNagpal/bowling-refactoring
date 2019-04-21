@@ -21,20 +21,25 @@ import java.util.*;
 
 public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
+	/**
+	 * addParty: The button the user presses to create a new party and add them to the game
+	 * finished: The button the user presses to finish party creation
+	 * assign: The button that assigns the parties to lanes
+	 * win: The window that displays the control desk interface
+	 * partyList: The list that shows all of the parties and members
+	 * maxMembers: The maximum number of members that can be assigned to a party
+	 * controlDesk: The control desk implementation to be used for functionality.
+	 */
 	private JButton addParty, finished, assign;
 	private JFrame win;
 	private JList partyList;
-	
-	/** The maximum  number of members in a party */
 	private int maxMembers;
-	
 	private ControlDesk controlDesk;
 
 	/**
 	 * Displays a GUI representation of the ControlDesk
 	 *
 	 */
-
 	public ControlDeskView(ControlDesk controlDesk, int maxMembers) {
 
 		this.controlDesk = controlDesk;
