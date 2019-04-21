@@ -9,9 +9,11 @@ import java.io.*;
 import java.util.Vector;
 import java.util.Iterator;
 import java.net.*;
-import java.awt.*;
 import java.awt.print.*;
 
+/**
+ * Creates the score report to show players after they play.
+ */
 public class ScoreReport {
 
 	private String content;
@@ -82,6 +84,9 @@ public class ScoreReport {
 		}
 	}
 
+	/**
+	 * Creates a printable score report object and sends it to a printer.
+	 */
 	public void sendPrintout() {
 		PrinterJob job = PrinterJob.getPrinterJob();
 
@@ -99,6 +104,12 @@ public class ScoreReport {
 
 	}
 
+	/**
+	 * Sends the given string from an input reader to the output.
+	 * @param in the input from which to read the string to send
+	 * @param out the output writer to use for sending
+	 * @param s the string to send, retrieved from in
+	 */
 	public void sendln(BufferedReader in, BufferedWriter out, String s) {
 		try {
 			out.write(s + "\r\n");
@@ -111,6 +122,11 @@ public class ScoreReport {
 		}
 	}
 
+	/**
+	 * Sends the given string to the output.
+	 * @param out the output writer to use for sending
+	 * @param s the string to send
+	 */
 	public void sendln(BufferedWriter out, String s) {
 		try {
 			out.write(s + "\r\n");
