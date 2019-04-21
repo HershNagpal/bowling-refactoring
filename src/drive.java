@@ -1,6 +1,3 @@
-import java.util.Vector;
-import java.io.*;
-
 /**
  * The main runner class of the bowling alley.
  */
