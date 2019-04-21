@@ -32,7 +32,6 @@ import javax.swing.border.*;
 import javax.swing.event.*;
 
 import java.util.*;
-import java.text.*;
 
 /**
  * Constructor for GUI used to Add Parties to the waiting party queue.
@@ -72,6 +71,9 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 		this.controlDesk = controlDesk;
 		maxSize = max;
+		party = new Vector();
+		Vector empty = new Vector();
+		empty.add("(Empty)");
 
 		win = new JFrame("Add Party");
 		win.getContentPane().setLayout(new BorderLayout());
@@ -84,13 +86,10 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		JPanel partyPanel = new JPanel();
 		partyPanel.setLayout(new FlowLayout());
 		partyPanel.setBorder(new TitledBorder("Your Party"));
-
-		party = new Vector();
-		Vector empty = new Vector();
-		empty.add("(Empty)");
-
-		JScrollPane partyPane = new JScrollPane(partyList);
+		
+		//Party List
 		partyList = createPartyList(empty);
+		JScrollPane partyPane = new JScrollPane(partyList);
 		partyPanel.add(partyPane);
 
 		// Bowler Database
@@ -108,8 +107,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		allBowlers.setVisibleRowCount(8);
 		allBowlers.setFixedCellWidth(120);
 		JScrollPane bowlerPane = new JScrollPane(allBowlers);
-		bowlerPane.setVerticalScrollBarPolicy(
-			JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		bowlerPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		allBowlers.addListSelectionListener(this);
 		bowlerPanel.add(bowlerPane);
 
@@ -119,7 +117,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-		buttonPanel.add(createAddPartyButton());
+		buttonPanel.add(createAddPartyPanel());
 		buttonPanel.add(createRemPatronPanel());
 		buttonPanel.add(createNewPatronPanel());
 		buttonPanel.add(createFinishedPanel());
@@ -149,7 +147,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the created JList of party members
 	 */
 	private JList createPartyList(Vector empty) {
-		JList partyList = new JList(empty);
+		this.partyList = new JList(empty);
 		partyList.setFixedCellWidth(120);
 		partyList.setVisibleRowCount(5);
 		partyList.addListSelectionListener(this);
@@ -162,7 +160,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "finished" button
 	 */
 	private JPanel createFinishedPanel() {
-		JButton finished = new JButton("Finished");
+		this.addPatron = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
 		finishedPanel.setLayout(new FlowLayout());
 		finished.addActionListener(this);
@@ -176,7 +174,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "new patron" button
 	 */
 	private JPanel createNewPatronPanel() {
-		JButton newPatron = new JButton("New Patron");
+		this.newPatron = new JButton("New Patron");
 		JPanel newPatronPanel = new JPanel();
 		newPatronPanel.setLayout(new FlowLayout());
 		newPatron.addActionListener(this);
@@ -189,8 +187,8 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * allows players to be able to add a new party to the game.
 	 * @return the panel with the "add to party" button
 	 */
-	private JPanel createAddPartyButton() {
-		JButton addPatron = new JButton("Add to Party");
+	private JPanel createAddPartyPanel() {
+		this.addPatron = new JButton("Add to Party");
 		JPanel addPatronPanel = new JPanel();
 		addPatronPanel.setLayout(new FlowLayout());
 		addPatron.addActionListener(this);
@@ -204,7 +202,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "remove member" button
 	 */
 	private JPanel createRemPatronPanel() {
-		JButton remPatron = new JButton("Remove Member");
+		this.remPatron = new JButton("Remove Member");
 		JPanel remPatronPanel = new JPanel();
 		remPatronPanel.setLayout(new FlowLayout());
 		remPatron.addActionListener(this);
