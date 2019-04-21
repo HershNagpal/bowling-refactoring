@@ -17,6 +17,7 @@ import java.text.*;
 
 public class EndGameReport implements ActionListener, ListSelectionListener {
 
+	
 	private JFrame win;
 	private JButton printButton, finished;
 	private JList memberList;

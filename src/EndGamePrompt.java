@@ -15,12 +15,15 @@ import javax.swing.*;
  */
 public class EndGamePrompt implements ActionListener {
 
+	/**
+	 * win: The window displaying the prompt when the game ends
+	 * yesButton: The button the player will click if they want to simulate another game
+	 * noButton: The button the player will click if they don't want to play another game
+	 * result: 1 if the yes button is pressed, 2 otherwise.
+	 */
 	private JFrame win;
 	private JButton yesButton, noButton;
-
 	private int result;
-
-	private String selectedNick, selectedMember;
 
 	public EndGamePrompt( String partyName ) {
 
@@ -73,7 +76,9 @@ public class EndGamePrompt implements ActionListener {
 
 	/**
 	 * Handles the interaction of the result of the buttons on the screen.
+	 * Only outputs 1 or 2 depending on whether yes or no is pressed.
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(yesButton)) {		
 			result=1;
