@@ -83,9 +83,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		colPanel.setLayout(new GridLayout(1, 3));
 
 		// Party Panel
-		JPanel partyPanel = new JPanel();
-		partyPanel.setLayout(new FlowLayout());
-		partyPanel.setBorder(new TitledBorder("Your Party"));
+		JPanel partyPanel = createPartyPanel();
 		
 		//Party List
 		partyList = createPartyList(empty);
@@ -140,6 +138,17 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 			((screenSize.height) / 2) - ((win.getSize().height) / 2));
 		win.show();
 
+	}
+
+	/**
+	 * Creates the panel with party information.
+	 * @return the party panel
+	 */
+	private JPanel createPartyPanel() {
+		JPanel partyPanel = new JPanel();
+		partyPanel.setLayout(new FlowLayout());
+		partyPanel.setBorder(new TitledBorder("Your Party"));
+		return partyPanel;
 	}
 
 	/**
