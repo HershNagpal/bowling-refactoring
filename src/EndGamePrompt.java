@@ -48,11 +48,11 @@ public class EndGamePrompt implements ActionListener {
 
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-		this.yesButton = createYesButton();
-		this.noButton = createNoButton();
+		JPanel yesButtonPanel = createYesButtonPanel();
+		JPanel noButtonPanel = createNoButtonPanel();
 
-		buttonPanel.add(yesButton);
-		buttonPanel.add(noButton);
+		buttonPanel.add(yesButtonPanel);
+		buttonPanel.add(noButtonPanel);
 
 		// Clean up main panel
 		colPanel.add(labelPanel);
@@ -88,26 +88,26 @@ public class EndGamePrompt implements ActionListener {
 	 * Helper method to create the button that ends the game without a replay
 	 * @return the no button
 	 */
-	private JButton createNoButton() {
-		JButton noButton = new JButton("No");
+	private JPanel createNoButtonPanel() {
+		this.noButton = new JButton("No");
 		JPanel noButtonPanel = new JPanel();
 		noButtonPanel.setLayout(new FlowLayout());
 		noButton.addActionListener(this);
 		noButtonPanel.add(noButton);
-		return noButton;
+		return noButtonPanel;
 	}
 
 	/**
 	 * Helper method to create the button that confirms the player wants to play another game.
 	 * @return the yes button
 	 */
-	private JButton createYesButton() {
-		JButton yesButton = new JButton("Yes");
+	private JPanel createYesButtonPanel() {
+		this.yesButton = new JButton("Yes");
 		JPanel yesButtonPanel = new JPanel();
 		yesButtonPanel.setLayout(new FlowLayout());
 		yesButton.addActionListener(this);
 		yesButtonPanel.add(noButton);
-		return yesButton;
+		return yesButtonPanel;
 	}
 
 	/**
