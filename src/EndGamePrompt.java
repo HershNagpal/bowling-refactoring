@@ -106,7 +106,7 @@ public class EndGamePrompt implements ActionListener {
 		JPanel yesButtonPanel = new JPanel();
 		yesButtonPanel.setLayout(new FlowLayout());
 		yesButton.addActionListener(this);
-		yesButtonPanel.add(noButton);
+		yesButtonPanel.add(yesButton);
 		return yesButtonPanel;
 	}
 
