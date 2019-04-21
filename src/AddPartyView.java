@@ -162,7 +162,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "finished" button
 	 */
 	private JPanel createFinishedPanel() {
-		finished = new JButton("Finished");
+		JButton finished = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
 		finishedPanel.setLayout(new FlowLayout());
 		finished.addActionListener(this);
@@ -176,7 +176,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "new patron" button
 	 */
 	private JPanel createNewPatronPanel() {
-		newPatron = new JButton("New Patron");
+		JButton newPatron = new JButton("New Patron");
 		JPanel newPatronPanel = new JPanel();
 		newPatronPanel.setLayout(new FlowLayout());
 		newPatron.addActionListener(this);
@@ -190,7 +190,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "add to party" button
 	 */
 	private JPanel createAddPartyButton() {
-		addPatron = new JButton("Add to Party");
+		JButton addPatron = new JButton("Add to Party");
 		JPanel addPatronPanel = new JPanel();
 		addPatronPanel.setLayout(new FlowLayout());
 		addPatron.addActionListener(this);
@@ -204,7 +204,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "remove member" button
 	 */
 	private JPanel createRemPatronPanel() {
-		remPatron = new JButton("Remove Member");
+		JButton remPatron = new JButton("Remove Member");
 		JPanel remPatronPanel = new JPanel();
 		remPatronPanel.setLayout(new FlowLayout());
 		remPatron.addActionListener(this);
