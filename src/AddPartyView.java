@@ -89,7 +89,6 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		
 		//Party List
 		partyList = createPartyList(empty);
-		partyList.addListSelectionListener(this);
 		JScrollPane partyPane = new JScrollPane(partyList);
 		partyPanel.add(partyPane);
 
@@ -123,11 +122,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		buttonPanel.add(createNewPatronPanel());
 		buttonPanel.add(createFinishedPanel());
 
-		remPatron.addActionListener(this);
-		newPatron.addActionListener(this);
-		addPatron.addActionListener(this);
-		finished.addActionListener(this);
-
+		
 
 		// Clean up main panel
 		colPanel.add(partyPanel);
@@ -157,6 +152,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		this.partyList = new JList(empty);
 		partyList.setFixedCellWidth(120);
 		partyList.setVisibleRowCount(5);
+		partyList.addListSelectionListener(this);
 		return partyList;
 	}
 
@@ -166,9 +162,10 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	 * @return the panel with the "finished" button
 	 */
 	private JPanel createFinishedPanel() {
-		this.addPatron = new JButton("Finished");
+		this.finished = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
 		finishedPanel.setLayout(new FlowLayout());
+		finished.addActionListener(this);
 		finishedPanel.add(finished);
 		return finishedPanel;
 	}
@@ -182,6 +179,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		this.newPatron = new JButton("New Patron");
 		JPanel newPatronPanel = new JPanel();
 		newPatronPanel.setLayout(new FlowLayout());
+		newPatron.addActionListener(this);
 		newPatronPanel.add(newPatron);
 		return newPatronPanel;
 	}
@@ -195,6 +193,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		this.addPatron = new JButton("Add to Party");
 		JPanel addPatronPanel = new JPanel();
 		addPatronPanel.setLayout(new FlowLayout());
+		addPatron.addActionListener(this);
 		addPatronPanel.add(addPatron);
 		return addPatronPanel;
 	}
@@ -208,6 +207,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		this.remPatron = new JButton("Remove Member");
 		JPanel remPatronPanel = new JPanel();
 		remPatronPanel.setLayout(new FlowLayout());
+		remPatron.addActionListener(this);
 		remPatronPanel.add(remPatron);
 		return remPatronPanel;
 	}
