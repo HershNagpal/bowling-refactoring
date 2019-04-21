@@ -15,6 +15,9 @@ import javax.swing.event.*;
 import java.util.*;
 import java.text.*;
 
+/**
+ * The prompt that shows when the game ends
+ */
 public class EndGamePrompt implements ActionListener {
 
 	private JFrame win;
@@ -26,7 +29,7 @@ public class EndGamePrompt implements ActionListener {
 
 	public EndGamePrompt( String partyName ) {
 
-		result =0;
+		result = 0;
 		
 		win = new JFrame("Another Game for " + partyName + "?" );
 		win.getContentPane().setLayout(new BorderLayout());
@@ -50,17 +53,8 @@ public class EndGamePrompt implements ActionListener {
 
 		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-		yesButton = new JButton("Yes");
-		JPanel yesButtonPanel = new JPanel();
-		yesButtonPanel.setLayout(new FlowLayout());
-		yesButton.addActionListener(this);
-		yesButtonPanel.add(yesButton);
-
-		noButton = new JButton("No");
-		JPanel noButtonPanel = new JPanel();
-		noButtonPanel.setLayout(new FlowLayout());
-		noButton.addActionListener(this);
-		noButtonPanel.add(noButton);
+		this.yesButton = createYesButton();
+		this.noButton = createNoButton();
 
 		buttonPanel.add(yesButton);
 		buttonPanel.add(noButton);
@@ -82,6 +76,9 @@ public class EndGamePrompt implements ActionListener {
 
 	}
 
+	/**
+	 * Handles the interaction of the result of the buttons on the screen.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(yesButton)) {		
 			result=1;
@@ -92,6 +89,35 @@ public class EndGamePrompt implements ActionListener {
 
 	}
 
+	/**
+	 * Helper method to create the button that ends the game without a replay
+	 * @return the no button
+	 */
+	private JButton createNoButton() {
+		JButton noButton = new JButton("No");
+		JPanel noButtonPanel = new JPanel();
+		noButtonPanel.setLayout(new FlowLayout());
+		noButton.addActionListener(this);
+		noButtonPanel.add(noButton);
+		return noButton;
+	}
+
+	/**
+	 * Helper method to create the button that confirms the player wants to play another game.
+	 * @return the yes button
+	 */
+	private JButton createYesButton() {
+		JButton yesButton = new JButton("Yes");
+		JPanel yesButtonPanel = new JPanel();
+		yesButtonPanel.setLayout(new FlowLayout());
+		yesButton.addActionListener(this);
+		yesButtonPanel.add(noButton);
+		return yesButton;
+	}
+
+	/**
+	 * 
+	 */
 	public int getResult() {
 		while ( result == 0 ) {
 			try {
@@ -103,9 +129,13 @@ public class EndGamePrompt implements ActionListener {
 		return result;	
 	}
 	
-	public void distroy() {
+	/**
+	 * Hides the end game prompt window
+	 */
+	public void destroy() {
 		win.hide();
 	}
 	
+
 }
 
