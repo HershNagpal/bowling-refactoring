@@ -49,35 +49,13 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		colPanel.setLayout(new BorderLayout());
 
 		// Controls Panel
-		JPanel controlsPanel = new JPanel();
-		controlsPanel.setLayout(new GridLayout(3, 1));
-		controlsPanel.setBorder(new TitledBorder("Controls"));
-
-		addParty = new JButton("Add Party");
-		JPanel addPartyPanel = new JPanel();
-		addPartyPanel.setLayout(new FlowLayout());
-		addParty.addActionListener(this);
-		addPartyPanel.add(addParty);
-		controlsPanel.add(addPartyPanel);
-
-		assign = new JButton("Assign Lanes");
-		JPanel assignPanel = new JPanel();
-		assignPanel.setLayout(new FlowLayout());
-		assign.addActionListener(this);
-		assignPanel.add(assign);
-//		controlsPanel.add(assignPanel);
-
-		finished = new JButton("Finished");
-		JPanel finishedPanel = new JPanel();
-		finishedPanel.setLayout(new FlowLayout());
-		finished.addActionListener(this);
-		finishedPanel.add(finished);
-		controlsPanel.add(finishedPanel);
+		JPanel controlsPanel = createControlsPanel();
+		addParty = createAddPartyButton(controlsPanel);
+		assign = createAssignLanesButton();
+		finished = createFinishedButton(controlsPanel);
 
 		// Lane Status Panel
-		JPanel laneStatusPanel = new JPanel();
-		laneStatusPanel.setLayout(new GridLayout(numLanes, 1));
-		laneStatusPanel.setBorder(new TitledBorder("Lane Status"));
+		JPanel laneStatusPanel = createLaneStatusPanel(numLanes);
 
 		HashSet lanes=controlDesk.getLanes();
 		Iterator it = lanes.iterator();
@@ -100,14 +78,8 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		Vector empty = new Vector();
 		empty.add("(Empty)");
 
-		partyList = new JList(empty);
-		partyList.setFixedCellWidth(120);
-		partyList.setVisibleRowCount(10);
-		JScrollPane partyPane = new JScrollPane(partyList);
-		partyPane.setVerticalScrollBarPolicy(
-			JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		partyPanel.add(partyPane);
-		//		partyPanel.add(partyList);
+
+		partyList = createPartyList(controlsPanel, empty);
 
 		// Clean up main panel
 		colPanel.add(controlsPanel, "East");
@@ -135,12 +107,88 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	}
 
 	/**
-	 * Handler for actionEvents
-	 *
-	 * @param e	the ActionEvent that triggered the handler
-	 *
+	 * Creates the control panel with lane and party controls.
+	 * @return the lane control panel
 	 */
+	private JPanel createControlsPanel() {
+		JPanel controlsPanel = new JPanel();
+		controlsPanel.setLayout(new GridLayout(3, 1));
+		controlsPanel.setBorder(new TitledBorder("Controls"));
+		return controlsPanel;
+	}
 
+	/**
+	 * Creates the panel that displays the lanes and their current status.
+	 * @return the lane status panel
+	 */
+	private JPanel createLaneStatusPanel(int numLanes) {
+		JPanel laneStatusPanel = new JPanel();
+		laneStatusPanel.setLayout(new GridLayout(numLanes, 1));
+		laneStatusPanel.setBorder(new TitledBorder("Lane Status"));
+		return laneStatusPanel;
+	}
+
+	/**
+	 * Creates the button that finishes the creation of parties.
+	 * @return the button that finishes party creation
+	 */
+	private JButton createFinishedButton(JPanel controlsPanel) {
+		JButton finished = new JButton("Finished");
+		JPanel finishedPanel = new JPanel();
+		finishedPanel.setLayout(new FlowLayout());
+		finished.addActionListener(this);
+		finishedPanel.add(finished);
+		controlsPanel.add(finishedPanel);
+		return finished;
+	}
+
+	/**
+	 * Creates the list of parties.
+	 * @return the list of parties
+	 */
+	private JList createPartyList(JPanel partyPanel, Vector empty) {
+		JList partyList = new JList(empty);
+		partyList.setFixedCellWidth(120);
+		partyList.setVisibleRowCount(10);
+		JScrollPane partyPane = new JScrollPane(partyList);
+		partyPane.setVerticalScrollBarPolicy(
+		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		partyPanel.add(partyPane);
+		return partyList;
+	}
+
+	/**
+	 * Creates the button that adds a party to the game.
+	 * @return the add party button
+	 */
+	private JButton createAddPartyButton (JPanel controlsPanel) {
+		JButton addParty = new JButton("Add Party");
+		JPanel addPartyPanel = new JPanel();
+		addPartyPanel.setLayout(new FlowLayout());
+		addParty.addActionListener(this);
+		addPartyPanel.add(addParty);
+		controlsPanel.add(addPartyPanel);
+		return addParty;
+	}
+
+	/**
+	 * Creates the button that allows the user to assign lanes to the parties.
+	 * @return the button used to assign lanes
+	 */
+	private JButton createAssignLanesButton() {
+		JButton assign = new JButton("Assign Lanes");
+		JPanel assignPanel = new JPanel();
+		assignPanel.setLayout(new FlowLayout());
+		assign.addActionListener(this);
+		assignPanel.add(assign);
+		return assign;
+	}
+	
+
+	/**
+	 * Handler for actionEvents
+	 * @param e	the ActionEvent that triggered the handler
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(addParty)) {
 			AddPartyView addPartyWin = new AddPartyView(this, maxMembers);
@@ -156,22 +204,16 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
 	/**
 	 * Receive a new party from andPartyView.
-	 *
 	 * @param addPartyView	the AddPartyView that is providing a new party
-	 *
 	 */
-
 	public void updateAddParty(AddPartyView addPartyView) {
 		controlDesk.addPartyQueue(addPartyView.getParty());
 	}
 
 	/**
 	 * Receive a broadcast from a ControlDesk
-	 *
 	 * @param ce	the ControlDeskEvent that triggered the handler
-	 *
 	 */
-
 	public void receiveControlDeskEvent(ControlDeskEvent ce) {
 		partyList.setListData(((Vector) ce.getPartyQueue()));
 	}
